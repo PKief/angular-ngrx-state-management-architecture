@@ -1,1 +1,1 @@
-export * from './entertainment.service.ts';
+export * from "./entertainment.service";

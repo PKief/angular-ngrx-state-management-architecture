@@ -1,28 +1,38 @@
-import { Component, isDevMode } from '@angular/core';
-import { bootstrapApplication } from '@angular/platform-browser';
-import 'zone.js';
-import { provideStore } from '@ngrx/store';
-import { provideEffects } from '@ngrx/effects';
-import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { provideHttpClient } from "@angular/common/http";
+import { Component, isDevMode } from "@angular/core";
+import { bootstrapApplication } from "@angular/platform-browser";
+import {
+  PreloadAllModules,
+  RouterLink,
+  RouterOutlet,
+  provideRouter,
+  withPreloading,
+} from "@angular/router";
+import { provideEffects } from "@ngrx/effects";
+import { provideState, provideStore } from "@ngrx/store";
+import { provideStoreDevtools } from "@ngrx/store-devtools";
+import "zone.js";
+import { AppEffects } from "./_state/app.effects";
+import { appFeature } from "./_state/app.reducer";
+import { APP_ROUTES } from "./app.routes";
 
 @Component({
-  selector: 'app-root',
+  selector: "app-root",
   standalone: true,
-  template: `
-    <h1>Hello from {{ name }}!</h1>
-    <a target="_blank" href="https://angular.dev/overview">
-      Learn more about Angular
-    </a>
-  `,
+  imports: [RouterOutlet, RouterLink],
+  template: ` <h1>My App</h1>
+    <a routerLink="/entertainment">Entertainment</a>
+
+    <router-outlet />`,
 })
-export class App {
-  name = 'Angular';
-}
+export class App {}
 
 bootstrapApplication(App, {
   providers: [
-    provideStore(),
-    provideEffects(),
+    provideState(appFeature),
+    provideEffects([AppEffects]),
+    provideHttpClient(),
+    provideRouter(APP_ROUTES, withPreloading(PreloadAllModules)),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],
 });
