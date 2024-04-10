@@ -1,0 +1,7 @@
+<h1>Entertainment</h1>
+
+<button (click)="tellJoke()">Tell me a joke</button>
+
+@for (joke of jokes$(); track $index) {
+  <p>{{ joke }}</p>
+}
