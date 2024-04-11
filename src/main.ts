@@ -1,5 +1,5 @@
 import { provideHttpClient } from "@angular/common/http";
-import { Component, isDevMode } from "@angular/core";
+import { ChangeDetectionStrategy, Component, isDevMode } from "@angular/core";
 import { bootstrapApplication } from "@angular/platform-browser";
 import {
   PreloadAllModules,
@@ -20,15 +20,14 @@ import { APP_ROUTES } from "./app.routes";
   selector: "app-root",
   standalone: true,
   imports: [RouterOutlet, RouterLink],
-  template: ` <h1>My App</h1>
-    <a routerLink="/entertainment">Entertainment</a>
-
-    <router-outlet />`,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `<router-outlet />`,
 })
 export class App {}
 
 bootstrapApplication(App, {
   providers: [
+    provideStore(),
     provideState(appFeature),
     provideEffects([AppEffects]),
     provideHttpClient(),

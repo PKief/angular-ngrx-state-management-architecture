@@ -1,4 +1,4 @@
-import { Joke } from "@shared";
+import { Joke } from "../../shared/models";
 
 export type EntertainmentState = {
   jokes: Joke[];

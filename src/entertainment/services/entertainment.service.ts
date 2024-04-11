@@ -1,7 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Joke } from "@shared";
-import { Quote } from "../../../projects/shared/src/public-api";
+import { Joke, Quote } from "../../shared/models";
 
 @Injectable({ providedIn: "root" })
 export class EntertainmentService {

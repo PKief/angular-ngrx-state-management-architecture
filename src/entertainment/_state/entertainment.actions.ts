@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps, props } from "@ngrx/store";
-import { Joke } from "@shared";
+import { Joke } from "../../shared/models";
 
 export const entertainmentActions = createActionGroup({
   source: "ENTERTAINMENT",

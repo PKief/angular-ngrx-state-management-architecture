@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { LoadingSpinnerComponent } from "../../shared";
 import { EntertainmentFacade } from "../_state/entertainment.facade";
 
 @Component({
@@ -6,6 +7,8 @@ import { EntertainmentFacade } from "../_state/entertainment.facade";
   standalone: true,
   templateUrl: "./entertainment.component.html",
   styleUrl: "./entertainment.component.scss",
+  imports: [LoadingSpinnerComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EntertainmentComponent {
   readonly jokes$ = this.entertainmentFacade.jokes$;
